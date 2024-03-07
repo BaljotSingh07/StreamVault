@@ -1,0 +1,11 @@
+﻿.hor-movies {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.movie-section-header{
+    font-weight: 600;
+    letter-spacing: -1px;
+    color: whitesmoke;
+}

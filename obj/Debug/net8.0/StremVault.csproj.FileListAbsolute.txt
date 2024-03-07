@@ -1,0 +1,7 @@
+C:\Users\baljo\source\repos\BlazorApp1\BlazorApp1\obj\Debug\net8.0\StremVault.csproj.AssemblyReference.cache
+C:\Users\baljo\source\repos\BlazorApp1\BlazorApp1\obj\Debug\net8.0\StremVault.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\baljo\source\repos\BlazorApp1\BlazorApp1\obj\Debug\net8.0\StremVault.AssemblyInfoInputs.cache
+C:\Users\baljo\source\repos\BlazorApp1\BlazorApp1\obj\Debug\net8.0\StremVault.AssemblyInfo.cs
+C:\Users\baljo\source\repos\BlazorApp1\BlazorApp1\obj\Debug\net8.0\StremVault.csproj.CoreCompileInputs.cache
+C:\Users\baljo\source\repos\BlazorApp1\BlazorApp1\obj\Debug\net8.0\StremVault.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\baljo\source\repos\BlazorApp1\BlazorApp1\obj\Debug\net8.0\StremVault.MvcApplicationPartsAssemblyInfo.cache

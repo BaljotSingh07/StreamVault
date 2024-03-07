@@ -1,0 +1,50 @@
+#hero-img[b-nue6tgkyo8] {
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: -3;
+}
+
+#hero-blur[b-nue6tgkyo8] {
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    z-index: -2;
+    top: 0;
+    left: 0;
+    box-shadow: inset 0px -30px 30px 30px black;
+    background-size: cover;
+    background-position: center 0;
+}
+    #hero-blur[b-nue6tgkyo8]:after {
+        content: '\A';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgb(255,255,255);
+        background: linear-gradient(280deg, rgba(255,255,255,0) 50%, rgba(0,0,0,1) 100%);
+
+    }
+
+
+#movie-details[b-nue6tgkyo8] {
+    color: whitesmoke;
+    padding: 10px;
+    max-width: 800px;
+}
+#movie-details > p[b-nue6tgkyo8] {
+    letter-spacing: -.5px;
+    font-size: 18px;
+}
+
+#movie-hero-header[b-nue6tgkyo8]{
+    font-size: 80px;
+    letter-spacing: -4px;
+}
+
+.container-fluid[b-nue6tgkyo8]{
+    max-width: 1450px;
+}

@@ -1,0 +1,28 @@
+﻿@using StreamVault.Models
+
+<div @onclick="OnCardClick" class="card movie-container m-3" >
+    <img src=@("https://image.tmdb.org/t/p/w300/" + Movie.PosterPath) class="card-img-top rounded" />
+    @if (ShowTitle == true)
+    {
+        <div class="card-body">
+            <h5 class="card-title">@Movie.Title</h5>
+
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public Movie Movie { get; set; }
+
+    [Parameter]
+    public bool ShowTitle { get; set; } = true;
+
+    [Parameter]
+    public EventCallback<int> OnClick { get; set; }
+
+    private void OnCardClick()
+    {
+        OnClick.InvokeAsync(Movie.Id);
+    }
+}

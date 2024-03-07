@@ -1,0 +1,54 @@
+nav {
+    width: 70%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    position: sticky;
+    top: 10px;
+    z-index: 99;
+    background: rgba(53, 53, 53, 0.41);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11.3px);
+    -webkit-backdrop-filter: blur(11.3px);
+    border: 1px solid rgba(53, 53, 53, 0.09);
+}
+
+.navbar-brand{
+    letter-spacing: -1px;
+}
+
+.navbar{
+   justify-content: left;
+}
+
+.nav-links{
+    display:flex;
+}
+
+.navbar-nav{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.nav-item{
+    margin-left: 13px;
+    letter-spacing: -0.5px;
+}
+
+#search{
+    margin-left: auto;
+    flex-grow: 1;
+    max-width: 300px
+}
+
+    #search > form > input {
+        background: rgb(255, 255, 255, 0.75);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(11.3px);
+        -webkit-backdrop-filter: blur(11.3px);
+        border: 1px solid rgba(53, 53, 53, 0.09);
+    }

@@ -1,0 +1,65 @@
+﻿@page "/movies"
+@using StreamVault.Models
+@using StreamVault.Services
+@using StreamVault.Components.Shared
+@rendermode InteractiveServer
+
+<PageTitle>Movies</PageTitle>
+<br />
+@if (HeroMovie != null){
+    <div class="container-fluid mb-5" id="hero-img" >
+        <div id="hero-blur" style="background-image: url(https://image.tmdb.org/t/p/original/@HeroMovie.BackdropPath)" ></div>
+        <div id="movie-details" class="">
+            <h2 id="movie-hero-header">@HeroMovie.Title</h2>
+            <p>@HeroMovie.ReleaseDate.Year </p>
+            <small>Genre: </small>
+            @foreach (Genre genre in HeroMovie.Genres)
+            {
+                <span class="badge text-bg-dark mb-3">@genre.Name</span>
+            }
+            <p>@HeroMovie.Overview</p>
+
+            <small>Director: </small>
+            <span class="badge text-bg-dark mb-3">@HeroMovie.Credits.Crew.First(c => c.Job == "Director").Name</span>
+            <br />
+
+            <small>Actors: </small>
+            @foreach (Cast cast in HeroMovie.Credits.Cast.Where(c => c.Order <= 2))
+            {
+                <span class="badge text-bg-dark mb-3">@cast.Name</span>
+            }
+            
+        </div>
+        <ContentSection Movies="TrendingMovies" OnCardClickCallback="@OnMovieClick" ShowTitles="false" SectionTitle="" />
+    </div>
+}
+<div class="container-fluid">
+<br />
+<ContentSection Movies="TopRatedMovies" SectionTitle="Top Rated" />
+<br />
+<ContentSection Movies="NowPlaying" SectionTitle="Now Playing" />
+
+</div>
+
+@code {
+    private MovieService MovieService = new MovieService();
+    private Movie HeroMovie { get; set; }
+
+    ICollection<Movie> TrendingMovies;
+    ICollection<Movie> TopRatedMovies;
+    ICollection<Movie> NowPlaying;
+
+    private async Task OnMovieClick(int id)
+    {
+        HeroMovie = await MovieService.GetMovie(id);
+
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        TrendingMovies = await MovieService.GetTrendingWeekAsync();
+        OnMovieClick(TrendingMovies.ElementAt(0).Id);
+        TopRatedMovies = await MovieService.GetTopRatedAsync();
+        NowPlaying = await MovieService.GetNowPlayingAsync();
+    }
+}

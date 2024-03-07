@@ -1,0 +1,11 @@
+.hor-movies[b-9xjm41zqjp] {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.movie-section-header[b-9xjm41zqjp]{
+    font-weight: 600;
+    letter-spacing: -1px;
+    color: whitesmoke;
+}

@@ -1,0 +1,36 @@
+﻿@using StreamVault.Models
+@rendermode InteractiveServer
+
+<PageTitle>Movies</PageTitle>
+
+<h4 class="movie-section-header">@SectionTitle</h4>
+
+<div class="hor-movies">
+    @if (Movies == null)
+    {
+       <p>Loading....</p>
+    }
+    else
+    {
+        @foreach (Movie movie in Movies)
+        {
+            <MovieCard OnClick="OnCardClickCallback" ShowTitle="ShowTitles" Movie="movie" />
+        }
+    }
+</div>
+
+
+@code {
+    [Parameter]
+    public string SectionTitle { get; set; }
+
+    [Parameter]
+    public ICollection<Movie> Movies { get; set; }
+
+    [Parameter]
+    public bool ShowTitles { get; set; } = true;
+
+    [Parameter]
+    public EventCallback<int> OnCardClickCallback { get; set; }
+
+}

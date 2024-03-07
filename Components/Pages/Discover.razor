@@ -1,0 +1,82 @@
+﻿@page "/discover"
+@rendermode @(new InteractiveServerRenderMode(prerender:false))
+@inject NavigationManager NavManager
+@using StreamVault.Components.Shared
+@using StreamVault.Models
+@using StreamVault.Services
+
+<div class="filter-container container-xl">
+    <form>
+        <select @bind="sort_by" name="sort_by" class="form-select">
+            <option value="popularity.desc">Popularity</option>
+            <option value="primary_release_date.desc">Release Date</option>
+            <option value="vote_count.desc">Most Voted</option>
+        </select>
+        <select @bind="type" name="type" class="form-select">
+            <option value="movie">Movie</option>
+            <option value="tv">TV Show</option>
+        </select>
+        <select @bind="with_genres" name="with_genres" class="form-select">
+            <option value="-1">All</option>
+            @if ( Genres != null )
+            {
+               foreach (Genre genre in Genres.Genres)
+                {
+                    <option value="@genre.Id">@genre.Name</option>
+                }
+            }
+        </select>
+        <input @bind="query" class="p-2" type="search" name="query" placeholder="Title" />
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<div id="movie-container" class="container-xl">
+    @if (queriedMovies != null)
+    {
+        foreach (Movie movie in queriedMovies)
+        {
+            <MovieCard ShowTitle="true" Movie="movie" />
+        }
+    }
+</div>
+
+
+@code {
+    private MovieService MovieService = new MovieService();
+    ICollection<Movie> queriedMovies { get; set; }
+    string paramQuery = "";
+
+    TmdbGenreResponse Genres { get; set; }  = new TmdbGenreResponse { Genres=[] };
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public string? sort_by { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public string? type { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public string with_genres { get; set; }
+
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public string query { get; set; }
+
+    public async Task getMovies()
+    {
+        //hot fix for all genres query
+        string newQuery = paramQuery.Replace("-1", "");
+        string baseUri = $"https://api.themoviedb.org/3/{(string.IsNullOrEmpty(query) ? "discover" : "search")}/{type??"movie"}?include_adult=false&include_video=false&language=en-US&page=1&vote_count.gte=200&";
+        queriedMovies = await MovieService.GetMovieCollectionByUri($"{baseUri}{newQuery}");
+        Genres = await MovieService.GetMovieGenres();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        paramQuery = NavManager.Uri.Split("?").Last();
+        await getMovies();
+    }
+}

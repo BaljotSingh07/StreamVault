@@ -1,0 +1,30 @@
+﻿.movie-container {
+    cursor: pointer;
+    display: inline-block;
+    *display: inline; /* For IE7*/
+    *zoom: 1; /* For IE7*/
+    vertical-align: top;
+    border-radius: 5px 5px;
+    border: none;
+    width: 13rem;
+    /* From https://css.glass */
+    background: rgb(0, 0, 0, 0.41);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11.3px);
+    -webkit-backdrop-filter: blur(11.3px);
+    border: 1px solid rgba(53, 53, 53, 0.09);
+}
+
+    .movie-container > img {
+        width: 100%;
+        aspect-ratio: 0.675
+    }
+
+.card-title {
+    white-space: break-spaces;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: -.5px;
+    color: whitesmoke;
+}
